@@ -35,23 +35,28 @@ defmodule Trending.Repo do
   end
 
   def get_repo_desc(repo) do
-    desc = Enum.at(repo, 2)
-    |> elem(2)
-    |> hd()
-    |> elem(2)
+    try do
+      desc = Enum.at(repo, 2)
+      |> elem(2)
+      |> hd()
+      |> elem(2)
 
-    desc =
-      if length(desc) == 1 do
-        desc |> hd()
-      else
-        if(is_tuple(hd(desc))) do
-          desc |> tl() |> hd()
-        else
+      desc =
+        if length(desc) == 1 do
           desc |> hd()
+        else
+          if(is_tuple(hd(desc))) do
+            desc |> tl() |> hd()
+          else
+            desc |> hd()
+          end
         end
-      end
 
-    String.trim desc
+      String.trim desc
+    rescue
+      e in ArgumentError -> e
+      ""
+    end
   end
 
   def get_repo_stars(repo) do
