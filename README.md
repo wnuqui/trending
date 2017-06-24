@@ -1,4 +1,4 @@
-# trending
+# trending [![Build Status](https://travis-ci.org/wnuqui/trending.png?branch=master)](https://travis-ci.org/wnuqui/trending)
 
 CLI to see what the GitHub community is most excited about today.
 
