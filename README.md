@@ -43,4 +43,4 @@ trending --help
 
 ## `trending` in action
 
-<img src="trending.png">
+<img src="trending.gif">
