@@ -66,7 +66,7 @@ defmodule Trending.Repo do
       case length(stars) do
         7 -> [2, 6]
         6 -> [2, 6]
-        _ -> [0, 4]
+        _ -> [3, 4]
       end
 
     total = stars
