@@ -35,27 +35,23 @@ defmodule Trending.Repo do
   end
 
   def get_repo_desc(repo) do
-    try do
-      desc = Enum.at(repo, 2)
-      |> elem(2)
-      |> hd()
-      |> elem(2)
-
-      desc =
-        if length(desc) == 1 do
-          desc |> hd()
-        else
-          if(is_tuple(hd(desc))) do
-            desc |> tl() |> hd()
-          else
-            desc |> hd()
+    get_desc = fn section ->
+      cond do
+        length(section) == 1 -> section |> hd()
+        true ->
+          cond do
+            is_tuple(hd(section)) -> section |> tl() |> hd()
+            true -> section |> hd()
           end
-        end
+      end
+    end
 
-      String.trim desc
-    rescue
-      e in ArgumentError -> e
-      ""
+    section = Enum.at(repo, 2) |> elem(2) # section of repo's description
+
+    case section do
+      section when length(hd(section)) > 0 ->
+        hd(section) |> elem(1) |> get_desc.() |> String.trim()
+      _ -> "" # trending repo has no description
     end
   end
 
