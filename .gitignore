@@ -20,3 +20,5 @@ erl_crash.dump
 *.ez
 
 /gitrend
+
+/test/trending/debug_test.exs
