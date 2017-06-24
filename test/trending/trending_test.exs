@@ -1,6 +1,5 @@
 defmodule TrendingTest do
   use ExUnit.Case
-
   import Trending, only: [compose_url: 1]
 
   describe "compose_url" do
